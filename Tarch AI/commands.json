@@ -1,0 +1,75 @@
+{
+    "commands": [
+      {
+        "command": "hello",
+        "response": "Hello! How can I assist you today?"
+      },
+      {
+        "command": "how are you",
+        "response": "I'm doing great! Thanks for asking."
+      },
+      {
+        "command": "what is tarch ai",
+        "response": "Tarch AI is your intelligent assistant designed to simplify tasks and enhance productivity."
+      },
+      {
+        "command": "tell me a joke",
+        "response": "Why don't skeletons fight each other? They don't have the guts!"
+      },
+      {
+        "command": "who created you",
+        "response": "I was created by a team of developers working on Tarch AI."
+      },
+      {
+        "command": "what's the weather",
+        "response": "Please check your weather app for the current forecast."
+      },
+      {
+        "command": "how can I use tarch ai",
+        "response": "Simply ask me anything, and I'll assist you with the best possible answer."
+      },
+      {
+        "command": "thank you",
+        "response": "You're welcome! Let me know if you need anything else."
+      },
+      {
+        "command": "bye",
+        "response": "Goodbye! Have a great day!"
+      },
+      {
+        "command": "help",
+        "response": "You can ask me about a variety of topics. Try asking 'what is Tarch AI' or 'tell me a joke'."
+      },
+      {
+        "command": "what is AI",
+        "response": "AI stands for Artificial Intelligence, which allows machines to simulate human intelligence and perform tasks."
+      },
+      {
+        "command": "how does tarch ai work",
+        "response": "I analyze your inputs, process them using algorithms, and provide intelligent responses based on available data."
+      },
+      // Add more commands as needed (up to 100)
+      {
+        "command": "weather today",
+        "response": "Unfortunately, I don't have access to live weather data, but you can check an app for that!"
+      },
+      {
+        "command": "good morning",
+        "response": "Good morning! Ready to assist you with whatever you need."
+      },
+      {
+        "command": "good night",
+        "response": "Good night! Sleep well and feel free to reach out anytime."
+      },
+      {
+        "command": "what is the capital of france",
+        "response": "The capital of France is Paris."
+      },
+      {
+        "command": "who is the president of the usa",
+        "response": "The current President of the USA is Joe Biden."
+      },
+      // Add more 100 commands here...
+    ]
+  }
+  

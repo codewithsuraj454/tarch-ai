@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn More - Tarch AI</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #1a1a1a;
+      color: #eaeaea;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    header {
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid #333333;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: #ffffff;
+    }
+
+    .content-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      width: 100%;
+      padding: 40px 20px;
+    }
+
+    .text-section {
+      flex: 1;
+      max-width: 600px;
+      padding-right: 20px;
+    }
+
+    .text-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .text-section p {
+      font-size: 1.2rem;
+      color: #bbbbbb;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .why-choose-section {
+      text-align: left;
+      margin-top: 30px;
+      padding-left: 30px;
+    }
+
+    .why-choose-section h3 {
+      font-size: 2rem;
+      color: #eaeaea;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .why-choose-section ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .why-choose-section li {
+      font-size: 1.1rem;
+      color: #bbbbbb;
+      margin-bottom: 10px;
+      line-height: 1.6;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .why-choose-section li:before {
+      content: "✔️";
+      position: absolute;
+      left: 0;
+      color: #4CAF50; /* Green check mark */
+    }
+
+    .image-section {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .image-section img {
+      width: 380px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .image-section img:hover {
+      transform: scale(1.05);
+    }
+
+    .buttons-container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .buttons-container button {
+      padding: 15px 25px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(145deg, #333333, #444444);
+      color: #eaeaea;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .buttons-container button:hover {
+      background: linear-gradient(145deg, #444444, #555555);
+    }
+
+    .buttons-container button:active {
+      background: linear-gradient(145deg, #222222, #333333);
+    }
+
+    footer {
+      width: 100%;
+      padding: 20px;
+      background-color: #111111;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666666;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Tarch AI - Learn More</h1>
+  </header>
+
+  <div class="content-container">
+    <div class="text-section">
+      <h2>Learn More About Tarch AI</h2>
+      <p>
+        Tarch AI is a cutting-edge platform designed to enhance productivity and simplify tasks. With its ability to adapt to various applications, Tarch AI offers an intuitive interface, powerful tools, and advanced algorithms for an optimized experience. Whether you're working on business solutions or personal projects, Tarch AI is here to make your life easier.
+      </p>
+      <p>
+        From task automation to complex data processing, Tarch AI offers the power you need in one convenient, easy-to-use platform. Explore all its features and possibilities, and see how Tarch AI can transform the way you work and live.
+      </p>
+      <div class="why-choose-section">
+        <h3>Why Choose Tarch AI?</h3>
+        <ul>
+          <li>Boost productivity with AI-powered tools</li>
+          <li>Automate everyday tasks and improve workflow</li>
+          <li>Advanced machine learning algorithms for precision</li>
+          <li>User-friendly interface for quick adoption</li>
+        </ul>
+        <p>Discover all the ways Tarch AI can help you and make your tasks easier.</p>
+      </div>
+    </div>
+
+    <div class="image-section">
+      <img src="Data\Images\download (3).jpg" alt="Tarch AI Vertical Image" />
+    </div>
+  </div>
+
+  <div class="buttons-container">
+    <button onclick="navigateTo('index.html')">Back to Home</button>
+    <button onclick="navigateTo('support.html')">Support</button>
+  </div>
+
+  <footer>
+    &copy; 2024 Tarch AI. All rights reserved.
+  </footer>
+
+  <script>
+    function navigateTo(page) {
+      window.location.href = page;
+    }
+  </script>
+
+</body>
+</html>
+
+
+

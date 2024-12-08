@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarch AI - Chatbot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #121212;
+      color: #eaeaea;
+      display: flex;
+      height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      border-right: 2px solid #333333;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar h2 {
+      font-size: 1.5rem;
+      color: #fff;
+    }
+
+    .sidebar .setting {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    .sidebar button {
+      padding: 10px;
+      background-color: #3498db;
+      border: none;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .sidebar button {
+        color: #ccc;
+        background-color: #121212;
+        border-radius: 9px;
+        padding: 13px;
+
+    }
+
+    .sidebar button:hover {
+      background-color: #2980b9;
+    }
+
+    .sidebar button:active {
+      background-color: #1c5980;
+    }
+
+    .chat-container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background-color: #1e1e1e;
+      position: relative;
+      transition: background-color 0.3s;
+    }
+
+    .chat-header {
+      background-color: #333333;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #ffffff;
+    }
+
+    .chat-messages {
+      flex-grow: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-color: #121212;
+      transition: background-color 0.3s;
+    }
+
+    .message {
+      max-width: 80%;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 5px 0;
+    }
+
+    .user-message {
+      background-color: #3a3a3a;
+      align-self: flex-end;
+      color: #eaeaea;
+    }
+
+    .ai-message {
+      background-color: #444444;
+      align-self: flex-start;
+      color: #f1c40f;
+    }
+
+    .chat-input {
+      padding: 15px;
+      background-color: #333333;
+      display: flex;
+      justify-content: space-between;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+
+    .chat-input input {
+      width: 80%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background-color: #555555;
+      color: #eaeaea;
+      font-size: 1rem;
+    }
+
+    .chat-input button {
+      width: 15%;
+      padding: 10px;
+      background-color: #3498db;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .chat-input button:hover {
+      background-color: #2980b9;
+    }
+
+    .chat-input button:active {
+      background-color: #1c5980;
+    }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #ccc;
+      width: 50px;
+      height: 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .theme-toggle .toggle-circle {
+      background-color: #fff;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.3s ease;
+    }
+
+    .light-theme .theme-toggle {
+      background-color: #3498db;
+    }
+
+    .light-theme .theme-toggle .toggle-circle {
+      transform: translateX(25px);
+    }
+
+    .light-theme body {
+      background-color: #ffffff;
+      color: #333333;
+    }
+
+    .light-theme .sidebar {
+      background-color: #f7f3f3;
+      color: black;
+    }
+    .light-theme .sidebar h2 {
+      color: #121212;
+    }
+    .light-theme .sidebar button {
+        color: #f7f2f2;
+        background-color: #121212;
+        border-radius: 9px;
+        padding: 13px;
+
+    }
+
+    .light-theme .chat-container {
+      background-color: #000000;
+
+    }
+
+    .light-theme .chat-header {
+      background-color: #eaeaea;
+    }
+
+    .light-theme .chat-messages {
+      background-color: #f8f8f8;
+    }
+
+    .light-theme .message {
+      background-color: #eaeaea;
+      color: #333333;
+    }
+
+    .light-theme .user-message {
+      background-color: #d4d4d4;
+    }
+
+    .light-theme .ai-message {
+      background-color: #c0c0c0;
+      color: #333333;
+    }
+
+    /* Adjust text colors to black and grey for light theme */
+    .light-theme .sidebar .setting {
+      color: #666666;
+    }
+
+    .light-theme .chat-header,
+    .light-theme .chat-input input {
+      color: #333333;
+    }
+
+    .light-theme .user-message,
+    .light-theme .ai-message {
+      color: #333333;
+    }
+
+    
+  </style>
+</head>
+<body class="dark-theme">
+
+  <div class="sidebar">
+    <h2>Tarch AI - Settings</h2>
+    
+    <div class="setting">Theme: Dark</div>
+    <div class="setting">Model: TARCH-682GEN</div>
+    <div class="setting">Usage: Trial-Mode</div>
+    <a href="index.html" class="button">Back to Home</a>
+
+  <!-- Support Button using anchor link (you can replace with your actual support page) -->
+  <a href="support.html" class="button">Support</a>
+  </div>
+
+  <div class="chat-container">
+    <div class="chat-header">
+      Tarch AI - Chatbot
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <!-- Chat messages will appear here -->
+    </div>
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Ask Tarch " />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <div class="theme-toggle" onclick="toggleTheme()">
+    <div class="toggle-circle"></div>
+  </div>
+<script>
+// Stop words to filter out
+const stopWords = [
+  "define", "is", "what", "for", "if", "differentiate", "between", "find", "its", "about", "information",
+  "little", "please", "which", "when", "to", "are", "the", "we", "so", "a", "hence", "why", "?", "pairs",
+  "how", "be", "tell", "me", "can", "never", "would", "who", "than", "calculate", "evaluate", "divide",
+  "multiply", "cut", "add", "addition", "subtract", "of", "it's", "it", "meaning", "definition", "give",
+  "many", "could", "explain", "something", "some", "about", "i", "have", "one", "two", "three", "four",
+  "five", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "had", "and", "hard", "bro", "result", "answer",
+  "big", "small", "very", "no", "yes", "ask", "full-form", "full", "form", "there", "detail", "details", "an", "where"
+];
+
+// Predefined commands
+const commands = [
+  { "command": "hello", "response": "Hello! How can I assist you today?" },
+  { "command": "how are you", "response": "I'm doing great! Thanks for asking." },
+  { "command": "what is tarch ai", "response": "Tarch AI is your intelligent assistant designed to simplify tasks and enhance productivity." },
+  { "command": "tell me a joke", "response": "Why don't skeletons fight each other? They don't have the guts!" },
+  { "command": "who created you", "response": "I was created by a team of developers working on Tarch AI." },
+  { "command": "help", "response": "You can ask me about a variety of topics. Try asking 'what is Tarch AI' or 'tell me a joke'." },
+  { "command": "time", "response": "The current time is " + new Date().toLocaleTimeString() },
+  { "command": "date", "response": "Today's date is " + new Date().toLocaleDateString() }
+];
+
+// Include Markov Chain Generation
+const Markov = require('markov-generator');
+const markov = new Markov({
+  input: [
+    "Once upon a time, there was a brave knight.",
+    "The knight fought a dragon and saved the princess."
+  ],
+  minLength: 5
+});
+
+// Function to toggle theme
+function toggleTheme() {
+  const body = document.body;
+  const toggleCircle = document.querySelector(".toggle-circle");
+  body.classList.toggle("light-theme");
+  body.classList.toggle("dark-theme");
+  const currentTheme = body.classList.contains("light-theme") ? "Light" : "Dark";
+  document.querySelector(".sidebar .setting:nth-child(2)").textContent = "Theme: " + currentTheme;
+  toggleCircle.style.transform = body.classList.contains("light-theme") ? "translateX(25px)" : "translateX(0)";
+}
+
+// Function to send a message
+function sendMessage() {
+  const userInput = document.getElementById("user-input").value.trim().toLowerCase();
+  if (userInput) {
+    addMessage(userInput, "user");
+    processCommand(userInput);
+    document.getElementById("user-input").value = "";
+  }
+}
+
+// Function to add a message to the chat window
+function addMessage(message, sender) {
+  const messageContainer = document.getElementById("chat-messages");
+  const messageDiv = document.createElement("div");
+  messageDiv.classList.add("message", sender === "user" ? "user-message" : "ai-message");
+  messageDiv.textContent = message;
+  messageContainer.appendChild(messageDiv);
+  messageContainer.scrollTop = messageContainer.scrollHeight;
+}
+
+// Function to preprocess user queries
+function preprocessQuery(query) {
+  return query
+    .split(" ")
+    .filter(word => !stopWords.includes(word))
+    .join(" ");
+}
+
+// Function to check if the input is a math expression
+function isMathExpression(input) {
+  return /^[\d+\-*/().\s]+$/.test(input);
+}
+
+// Function to evaluate math expressions
+function evaluateMathExpression(expression) {
+  try {
+    const result = eval(expression);
+    addMessage(`The answer is ${result}`, "ai");
+  } catch (error) {
+    addMessage("Error evaluating the math expression.", "ai");
+  }
+}
+
+// Function to process commands
+function processCommand(command) {
+  const preprocessedCommand = preprocessQuery(command);
+
+  // Check if it's a math expression
+  if (isMathExpression(preprocessedCommand)) {
+    evaluateMathExpression(preprocessedCommand);
+    return;
+  }
+
+  // Check for Markov chain response
+  if (preprocessedCommand.includes("generate markov")) {
+    const generatedText = markov.makeChain();
+    addMessage(generatedText, "ai");
+    return;
+  }
+
+  // Check if the command includes "generate" to trigger image generation
+  if (preprocessedCommand.includes("generate")) {
+    generateImage(preprocessedCommand);
+    return;
+  }
+
+  // Check predefined commands
+  const cmd = commands.find(c => c.command === preprocessedCommand);
+  if (cmd) {
+    addMessage(cmd.response, "ai");
+  } else {
+    fetchFromAPIs(preprocessedCommand || command); // Use original query if all words are filtered
+  }
+}
+
+// Function to generate an image based on keywords
+function generateImage(query) {
+  const folderPath = 'images/';  // Make sure this path is correct
+  const imgElement = document.createElement("img");
+
+  // Assume the command is "generate [keyword]" and we extract the keyword
+  const keywords = query.split(" ").slice(1); // Remove "generate" from the command
+  const imageName = `${folderPath}${keywords.join(" ")}.jpg`; // Construct the image path
+
+  // Check if the file exists (for testing purposes)
+  const img = new Image();
+  img.src = imageName;
+  img.onload = function () {
+    imgElement.src = imageName;
+    imgElement.alt = "Generated Image";
+    imgElement.style.width = "450px";
+    imgElement.style.height = "450px";
+    imgElement.style.margin = "10px auto";
+    imgElement.style.border = "2px solid #ddd";
+    imgElement.style.borderRadius = "10px";
+    imgElement.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)";
+    imgElement.style.display = "block";
+
+    // Append the image to the chat
+    document.getElementById("chat-messages").appendChild(imgElement);
+  };
+
+  img.onerror = function () {
+    addMessage("Sorry, I couldn't find an image matching that keyword.", "ai");
+  };
+}
+
+// Function to fetch information from APIs
+async function fetchFromAPIs(query) {
+  try {
+    const fullResponse = await Promise.all([fetchDuckDuckGo(query), fetchWikipedia(query)]);
+    const combinedResponse = fullResponse.filter(Boolean).join(" ");
+
+    if (combinedResponse) {
+      addMessage(combinedResponse, "ai");
+    } else {
+      await fetchWordByWord(query);
+    }
+  } catch (error) {
+    addMessage("Error fetching information from APIs.", "ai");
+  }
+}
+
+// Function to fetch information word by word
+async function fetchWordByWord(query) {
+  const words = query.split(" ");
+  let finalResponse = "";
+
+  for (const word of words) {
+    const wordResponses = await Promise.all([fetchDuckDuckGo(word), fetchWikipedia(word)]);
+    const combinedWordResponse = wordResponses.filter(Boolean).join(" ");
+    if (combinedWordResponse) {
+      finalResponse += combinedWordResponse + " ";
+    }
+  }
+
+  if (finalResponse.trim()) {
+    addMessage(finalResponse.trim(), "ai");
+  } else {
+    addMessage("Sorry, I couldn't find any information on that.", "ai");
+  }
+}
+
+// Function to fetch information from Wikipedia
+async function fetchWikipedia(query) {
+  const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.extract || null;
+  } catch {
+    return null;
+  }
+}
+
+// Function to fetch information from DuckDuckGo
+async function fetchDuckDuckGo(query) {
+  const url = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&no_html=1`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.AbstractText || null;
+  } catch {
+    return null;
+  }
+}
+</script>
+</body>
+</html>
