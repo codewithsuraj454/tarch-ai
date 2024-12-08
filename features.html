@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarch AI - Features</title>
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #1a1a1a;
+      color: #eaeaea;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #333333;
+      padding: 20px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #ffffff;
+    }
+
+    .features-section {
+      padding: 40px 20px;
+    }
+
+    .features-section h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .features-section p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .features-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .feature {
+      width: 250px;
+      background: #2c2c2c;
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: left;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .feature img {
+      width: 100%;
+      height: auto;
+    }
+
+    .feature h3 {
+      font-size: 1.2rem;
+      margin: 10px 15px;
+    }
+
+    .feature p {
+      font-size: 0.9rem;
+      margin: 0 15px 15px;
+    }
+
+    form {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    form input, form button {
+      padding: 10px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+    }
+
+    form input {
+      flex: 1;
+      max-width: 400px;
+      background-color: #444;
+      color: #eaeaea;
+    }
+
+    form button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    form button:hover {
+      background-color: #0056b3;
+    }
+
+    #generated-image img {
+      margin-top: 20px;
+      width: 300px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    footer {
+      margin-top: 20px;
+      background-color: #111111;
+      padding: 20px;
+      color: #666666;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tarch AI - Features</h1>
+  </header>
+  <main>
+    <!-- Present Features Section -->
+    <section class="features-section">
+      <h2>Present Features</h2>
+      <p>Explore the cutting-edge capabilities Tarch AI offers today:</p>
+      <div class="features-grid">
+        <div class="feature">
+          <img src="Data\Images\DALL·E 2024-11-22 12.33.16 - A futuristic and sleek abstract illustration representing AI technology, featuring a glowing neural network pattern with a gradient of blue, purple, a.webp" alt="Feature 1">
+          <h3>Intelligent Chatbot</h3>
+          <p>Seamless interaction with human-like responses.</p>
+        </div>
+        <div class="feature">
+          <img src="Data/Images/DALL·E 2024-11-10 12.07.06 - A high-tech, futuristic digital environment highlighting an AI named 'Tarch AI'. The AI appears as a glowing sphere with intricate patterns, surrounde (2).jpeg" alt="Feature 2">
+          <h3>Voice Commands</h3>
+          <p>Execute tasks and get answers with just your voice.</p>
+        </div>
+        <div class="feature">
+          <img src="Data\Images\DALL·E 2024-11-10 12.07.06 - A high-tech, futuristic digital environment highlighting an AI named 'Tarch AI'. The AI appears as a glowing sphere with intricate patterns, surrounde (1).webp" alt="Feature 3">
+          <h3>Dark Mode</h3>
+          <p>A sleek, user-friendly dark theme for better focus.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- New Features Section -->
+    <section class="features-section">
+      <h2>New Features</h2>
+      <p>Discover the latest updates we’re introducing to Tarch AI:</p>
+      <div class="features-grid">
+        <div class="feature">
+          <img src="Data\Images\DALL·E 2024-11-27 21.03.38 - A large, impactful advertisement showcasing the power of 'Tarch AI,' represented as a glowing, spherical AI entity with intricate patterns, interactin.webp" alt="New Feature 1">
+          <h3>Image Generation</h3>
+          <p>Generate high-quality images based on your prompts.</p>
+        </div>
+        <div class="feature">
+          <img src="Data/Images/DALL·E 2024-11-27 21.00.00 - A futuristic AI chatbot named 'Tarch AI' in action, represented as a glowing spherical AI with intricate neural network patterns. The setting is a sle.webp" alt="New Feature 2">
+          <h3>Open Source Model</h3>
+          <p>Access Tarch AI’s open-source APIs for custom integration.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image Generation Section -->
+    <section class="features-section">
+      <h2>Image Generation</h2>
+      <p>Try generating images dynamically with Tarch AI:</p>
+      <form id="image-form">
+        <input type="text" id="image-prompt" placeholder="Enter image description" required>
+        <button type="submit">Generate Image</button>
+      </form>
+      <div id="generated-image"></div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 Tarch AI. All rights reserved. Created by Suraj Kumar Mallick.</p>
+  </footer>
+  <script>
+    document.getElementById("image-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const prompt = document.getElementById("image-prompt").value.trim();
+
+      if (prompt) {
+        const generatedImage = document.getElementById("generated-image");
+        generatedImage.innerHTML = "<p>Generating image...</p>";
+
+        // Simulate API Call for Image Generation (Replace this with your API call)
+        try {
+          const response = await fetch("https://dummyapi/image-generation", { 
+            method: "POST", 
+            body: JSON.stringify({ prompt }), 
+            headers: { "Content-Type": "application/json" }
+          });
+          const data = await response.json();
+
+          if (data.imageUrl) {
+            generatedImage.innerHTML = `<img src="${data.imageUrl}" alt="Generated Image">`;
+          } else {
+            generatedImage.innerHTML = "<p>Failed to generate image. Try again.</p>";
+          }
+        } catch (error) {
+          generatedImage.innerHTML = "<p>Error while generating image. Please try again later.</p>";
+        }
+      }
+    });
+  </script>
+</body>
+</html>
